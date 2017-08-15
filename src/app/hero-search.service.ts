@@ -1,3 +1,4 @@
+import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http }       from '@angular/http';
 
@@ -8,12 +9,13 @@ import { Hero }           from './hero';
 
 @Injectable()
 export class HeroSearchService {
+  private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: Http) {}
 
   search(term: string): Observable<Hero[]> {
     return this.http
-               .get(`api/heroes/?name=${term}`)
+               .get(`${this.apiBaseUrl}/heroes/?name=${term}`)
                .map(response => response.json().data as Hero[]);
   }
 }

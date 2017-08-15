@@ -1,3 +1,4 @@
+import { environment } from '../environments/environment';
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
@@ -7,9 +8,10 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService {
+  private apiBaseUrl = environment.apiBaseUrl;
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = `${this.apiBaseUrl}/heroes`;  // URL to web api
 
   constructor(private http: Http) { }
 
